@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subasta TikTok LIVE</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #040720;
+      --fg: #e3ecff;
+      --accent: #00f2ff;
+      --card: rgba(32, 41, 89, 0.9);
+      --border: rgba(255, 255, 255, 0.12);
+      --muted: rgba(227, 236, 255, 0.7);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: linear-gradient(160deg, #020414 0%, #091035 100%);
+      color: var(--fg);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.25rem;
+    }
+    main {
+      width: min(920px, 100%);
+      background: rgba(7, 11, 34, 0.85);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(1.5rem, 3vw, 3rem);
+      box-shadow: 0 32px 80px rgba(3, 6, 24, 0.45);
+      backdrop-filter: blur(12px);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+    p {
+      line-height: 1.65;
+    }
+    section {
+      margin-top: 2.5rem;
+      padding: 1.75rem;
+      background: var(--card);
+      border-radius: 18px;
+      border: 1px solid rgba(0, 242, 255, 0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+    section h2 {
+      margin-top: 0;
+      font-size: 1.4rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+    pre {
+      margin: 1rem 0 0;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(10, 16, 48, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow-x: auto;
+      font-size: 0.95rem;
+    }
+    code {
+      font-family: "Fira Code", "Cascadia Code", Consolas, monospace;
+    }
+    .steps {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .steps article {
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      background: rgba(9, 14, 44, 0.9);
+      border: 1px solid rgba(0, 0, 0, 0.35);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(0, 242, 255, 0.18);
+      border: 1px solid rgba(0, 242, 255, 0.45);
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.6rem;
+      border-radius: 14px;
+      border: 1px solid rgba(0, 242, 255, 0.3);
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 600;
+      background: linear-gradient(135deg, rgba(0, 242, 255, 0.35), rgba(11, 17, 52, 0.9));
+      margin-top: 1.25rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    a.button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(0, 242, 255, 0.24);
+    }
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="badge">Proyecto</span>
+    <h1>Subasta TikTok LIVE</h1>
+    <p>
+      Esta es la interfaz web que acompaña tu subasta de donadores para TikTok LIVE. La aplicación está construida con
+      <strong>Streamlit</strong> y se ejecuta localmente; aquí encontrarás las instrucciones para ponerla en marcha y exponer el overlay que usa TikTok Studio.
+    </p>
+
+    <section>
+      <h2>1. Ejecuta la aplicación</h2>
+      <p>
+        En una terminal, clona el repositorio y arranca el servidor de Streamlit. Asegúrate de tener un entorno de Python 3.9 o superior con las dependencias instaladas.
+      </p>
+      <pre><code>git clone https://github.com/pancachogod/tiktok.git
+cd tiktok
+pip install -r requirements.txt
+streamlit run app.py --server.address 0.0.0.0 --server.enableCORS false</code></pre>
+      <p>
+        El servidor quedará disponible en <code>http://localhost:8501</code>. Si lo ejecutas en otra máquina, sustituye <code>localhost</code> por la IP o dominio accesible desde tu estudio.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Configura el overlay para TikTok Studio</h2>
+      <div class="steps">
+        <article>
+          <strong>Paso 1:</strong> Abre la aplicación Streamlit y, en la barra lateral, busca el bloque “Overlay TikTok Studio”.
+        </article>
+        <article>
+          <strong>Paso 2:</strong> Introduce la URL base que verá TikTok Studio (por ejemplo <code>http://localhost:8501</code> o <code>http://TU_IP_LOCAL:8501</code>). El sistema generará automáticamente el enlace con el parámetro <code>?overlay=1</code>.
+        </article>
+        <article>
+          <strong>Paso 3:</strong> Copia el enlace generado y pégalo en una fuente de navegador (Browser Source) dentro de TikTok Studio. Ajusta el tamaño para mostrar el contador y el ranking en pantalla.
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>3. Modo overlay</h2>
+      <p>
+        El modo overlay elimina la barra lateral y el encabezado de Streamlit, dejando únicamente el contador y el Top 3 de donadores. Recarga automática cada segundo mientras el temporizador esté activo o lleguen eventos desde TikTok.
+      </p>
+      <p>
+        Si necesitas un enlace rápido para pruebas locales, abre <code>http://localhost:8501/?overlay=1</code> una vez que la aplicación esté corriendo.</p>
+    </section>
+
+    <a class="button" href="https://github.com/pancachogod/tiktok" target="_blank" rel="noopener noreferrer">Ver repositorio en GitHub</a>
+
+    <footer>
+      &copy; <span id="year"></span> Subasta TikTok LIVE. Puedes modificar esta página libremente en <code>docs/index.html</code>.
+    </footer>
+  </main>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
